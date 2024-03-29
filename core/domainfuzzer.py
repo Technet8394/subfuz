@@ -24,8 +24,6 @@ class ScanList():
         self.unscanned.insert(0,'')
         self.scanned = []
         self.found = []
-        self.n_unscanned = len(self.unscanned)
-        self.n_scanned = len(self.scanned)
         self.items = []
         self.subnets = []
         self.ptr_unscanned_ip = []
@@ -275,9 +273,11 @@ class SubFuz():
     def status_print(self, end=False):
         if sys.stdout.isatty() and not self.args.quiet:
             self.log.printer()
-            total = self.sl.n_unscanned + self.sl.n_scanned
-            percentage = math.ceil(self.sl.n_scanned + 0.0) / total * 100
-            sys.stdout.write("Status: " + col.cyan + "%d/%d " % (self.sl.n_scanned, total) + col.end + "domains tested. "
+            scanned = len(self.sl.scanned)
+            unscanned = len(self.sl.unscanned)
+            total = unscanned + scanned
+            percentage = math.ceil(scanned + 0.0) / total * 100
+            sys.stdout.write("Status: " + col.cyan + "%d/%d " % (scanned, total) + col.end + "domains tested. "
                              + col.brown + "%.2f%%" % percentage + col.end + " done. failed: " + col.red + "%d" %
                              self.sl.failcounter + col.end + " \r")
             if end: sys.stdout.write('\n\n')
@@ -289,8 +289,6 @@ class SubFuz():
         try:
             if subdomain not in self.sl.scanned and subdomain not in self.sl.unscanned:
                 self.sl.unscanned.insert(0,subdomain.rstrip('.'))
-                self.sl.n_unscanned += 1
-                #print (subdomain.rstrip('.'))
         except Exception as e:
             self.log.fatal(('Inserting target %s.' % subdomain), False)
             print(traceback.print_exc())
@@ -473,10 +471,6 @@ class SubFuz():
                             self.sl.scan_failed.append([subdomain, 1])
                         self.sl.scanned.remove(subdomain)
                         self.sl.unscanned.insert(0,subdomain)
-                    if ans != False and self.record != 'PTR' and ((t == 'ANY' or t == 'A') or t == self.args.record):
-                        # basically don't count queries that's TXT or MX if querying a server doesn't respond to ANY
-                        self.sl.n_scanned += 1
-                        self.sl.n_unscanned -= 1
                 except Exception as e:
                     try:
                         self.log.fatal(('Domain Query failed on %s.'  % d), False)
