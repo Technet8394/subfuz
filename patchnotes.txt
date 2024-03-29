@@ -1,14 +1,20 @@
-Subfus 3.0.0 22.12.2021
+Subfuz 3.1.0 29.03.2024
+- Fix progress bar
+- Fix Censys Plugin
+- Fix loading of plugins
+- Forked out as I no longer have control over the original Repo
+----------------------------
+Subfuz 3.0.0 22.12.2021
 - Migrated to Python3
 - Fixed several plugins
 ----------------------------
-Subfus 2.2.2 04.09.2020
+Subfuz 2.2.2 04.09.2020
 - Fixed issue with nameservers not resolving
 - Fixed error logging for nameserver resolving
 - Fixed proper closing of error log
 - Version check on run
 ----------------------------
-Subfus 2.2.1 02.09.2020
+Subfuz 2.2.1 02.09.2020
 - Bug with CSV errors when not defining a CSV
 - Remove depricate warnign for beatifulsoap
 - Removed Spyse plugin
