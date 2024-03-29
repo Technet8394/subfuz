@@ -13,7 +13,7 @@ banner = '''             ___     _____
       \/          \/                 \/\n
 '''
 
-VERSION = "3.0.1"
+VERSION = "3.1.0"
 
 (SF_FILE, SF_DIR) = env.setup_core_paths(os.path.realpath(__file__))
 PLUGINS_DIR     = os.path.join(SF_DIR, "plugins")
@@ -22,7 +22,7 @@ CORE_DIR        = os.path.join(SF_DIR, "core")
 
 def check_version():
     try:
-        ver = requests.get("https://raw.githubusercontent.com/netsecurity-as/subfuz/master/patchnotes.txt", timeout=1).content
+        ver = requests.get("https://raw.githubusercontent.com/Eplox/subfuz/master/patchnotes.txt", timeout=1).content
         ver = ver.split('\n')[0].split(' ')[1]
         if ver != VERSION:
             print ('\nWARNING\nSubfuz is out of date.\nRunning version: %s\nLatest version:  %s\n\n' % (ver,VERSION))
@@ -70,7 +70,7 @@ Example usage:
   python subfuz.py -d example.com -w domain_dictionary.txt -all
 
 SubFuz %s
-Author: Torstein Mauseth @ Netsecurity
+Author: Torstein Mauseth
 ''' % VERSION
     parser = argparse.ArgumentParser(epilog=example_text, formatter_class=argparse.RawTextHelpFormatter)
     parser._action_groups.pop()
