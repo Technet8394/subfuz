@@ -10,7 +10,7 @@ When SubFuz identifies a valid subdomain, it will perform mutation techniques on
 Currently tested on Linux with python 3.10
 ```
 sudo apt-get install python3 python3-pip
-git clone https://github.com/netsecurity-as/subfuz/
+git clone https://github.com/Eplox/subfuz/
 cd subfuz
 python3 -m pip install -r requirements.txt
 ```
